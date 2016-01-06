@@ -1,4 +1,4 @@
-struct Return<T>(T);
+pub struct Return<T>(T);
 
 impl<T> Into<Option<T>> for Return<T> {
     fn into(self) -> Option<T> {
@@ -16,6 +16,7 @@ impl<T> Into<()> for Return<T> {
     fn into(self) {}
 }
 
+#[macro_export]
 macro_rules! do_it {
     () => { return Return(()).into(); };
     (return $var:ident) => { return $crate::Return($var).into(); };
